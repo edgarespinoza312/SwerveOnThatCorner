@@ -11,9 +11,11 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.commands.FollowPathCommand;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
@@ -75,7 +77,8 @@ joystick.R3().and(joystick.square()).whileTrue(drivetrain.sysIdQuasistatic(Direc
     }
 
     public Command getAutonomousCommand() {
+        drivetrain.resetPose(new Pose2d(2.0,7.0, new Rotation2d(0)));
 
-        return new PathPlannerAuto("StraightAuto");
+        return new SequentialCommandGroup(null);
     }
 }
